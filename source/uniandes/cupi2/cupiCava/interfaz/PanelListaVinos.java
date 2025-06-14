@@ -60,7 +60,7 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
     /**
      * Lista de los vinos.
      */
-    // TODO Parte3 PuntoA: Declare el atributo listaVinos de tipo JList.
+    private JList<String> listaVinos;
 
     /**
      * Panel con un scroll que contiene a listaVinos.
@@ -88,10 +88,21 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
         setBorder( new CompoundBorder( new EmptyBorder( 0, 5, 0, 5 ), new TitledBorder( "Lista de vinos" ) ) );
         setPreferredSize( new Dimension( 250, 0 ) );
 
-        // TODO Parte3 PuntoB: Inicializar la lista de vinos y agregarle un ListSelectionListener
-        
+      
+        listaVinos = new JList<String>();
+        listaVinos.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    String seleccionado = listaVinos.getSelectedValue();
+                    if (seleccionado != null) {
+                        principal.actualizarInfoVino(seleccionado);
+                    }
+                }
+            }
+        });
 
-     // TODO Parte3 PuntoC: Inicializar el scroll.
+        scroll = new JScrollPane(listaVinos);
         scroll.setHorizontalScrollBarPolicy( JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
         scroll.setVerticalScrollBarPolicy( JScrollPane.VERTICAL_SCROLLBAR_ALWAYS );
         scroll.setBorder( new CompoundBorder( new EmptyBorder( 3, 3, 3, 3 ), new LineBorder( Color.BLACK, 1 ) ) );
@@ -112,9 +123,9 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
      * Actualiza la lista de vinos con la lista recibida por parámetro.
      * @param pListaVinos Lista de los vinos. pListaVinos != null.
      */
-    public void refrescarLista( ArrayList pListaVinos )
+    public void refrescarLista( ArrayList<String> pListaVinos )
     {
-        listaVinos.setListData( pListaVinos.toArray( ) );
+        listaVinos.setListData( pListaVinos.toArray( new String[0] ) );
         if( !pListaVinos.isEmpty( ) )
         {
             listaVinos.setSelectedIndex( 0 );
