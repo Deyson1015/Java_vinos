@@ -67,7 +67,7 @@ public class DialogoAgregarVino extends JDialog implements ActionListener
     /**
      * Combo box con las presentaciones del vino.
      */
-    private JComboBox comboPresentacion;
+    private JComboBox<String> comboPresentacion;
 
     /**
      * Campo de texto con el año de elaboración del vino.
@@ -92,12 +92,14 @@ public class DialogoAgregarVino extends JDialog implements ActionListener
     /**
      * Combo box con los tipos de vino.
      */
-    private JComboBox comboTipo;
+    private JComboBox<String> comboTipo;
 
     /**
      * Combo box con los colores del vino.
      */
-    private JComboBox comboColor;
+    private JComboBox<String> comboColor;
+
+
 
     /**
      * Botón para agregar.
@@ -150,7 +152,7 @@ public class DialogoAgregarVino extends JDialog implements ActionListener
         panelInfo1.add( txtContenidoAzucar );
 
         panelInfo1.add( new JLabel( "Tipo:" ) );
-        comboTipo = new JComboBox( );
+        comboTipo = new JComboBox<String>( );
         comboTipo.addItem( Vino.SECO );
         comboTipo.addItem( Vino.ABOCADO );
         comboTipo.addItem( Vino.SEMI_SECO );
@@ -163,7 +165,7 @@ public class DialogoAgregarVino extends JDialog implements ActionListener
         panelInfo1.add( txtLugarOrigen );
 
         panelInfo1.add( new JLabel( "Color:" ) );
-        comboColor = new JComboBox( );
+        comboColor = new JComboBox<String>( );
         comboColor.addItem( Vino.BLANCO );
         comboColor.addItem( Vino.TINTO );
         comboColor.addItem( Vino.ROSADO );
