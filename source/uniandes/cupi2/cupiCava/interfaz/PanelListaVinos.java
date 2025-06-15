@@ -139,7 +139,7 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
     public void seleccionar( String pNombreVino )
     {
         int indice = -1;
-        ListModel model = listaVinos.getModel( );
+        ListModel<String> model = listaVinos.getModel( );
         for( int i = 0; i < model.getSize( ); i++ )
         {
             String vinoActual = ( String )model.getElementAt( i );
@@ -161,7 +161,7 @@ public class PanelListaVinos extends JPanel implements ListSelectionListener, Ac
     {
         if( listaVinos.getSelectedValue( ) != null )
         {
-            String nombreVino = ( String )listaVinos.getSelectedValue( );
+        	String nombreVino = listaVinos.getSelectedValue( );
             principal.actualizarInfoVino( nombreVino );
         }
     }

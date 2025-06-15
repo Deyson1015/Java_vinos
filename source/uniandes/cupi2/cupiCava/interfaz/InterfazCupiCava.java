@@ -200,7 +200,7 @@ public class InterfazCupiCava extends JFrame
      */
     private void actualizarLista( )
     {
-        ArrayList vinos = new ArrayList( );
+        ArrayList<String> vinos = new ArrayList<String>( );
         for( int i = 0; i < cupiCava.darVinos( ).size( ); i++ )
         {
             Vino actual = ( Vino )cupiCava.darVinos( ).get( i );
