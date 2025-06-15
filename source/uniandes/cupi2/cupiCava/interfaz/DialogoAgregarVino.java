@@ -138,7 +138,7 @@ public class DialogoAgregarVino extends JDialog implements ActionListener
         panelInfo1.add( txtNombre );
 
         panelInfo1.add( new JLabel( "Presentación:" ) );
-        comboPresentacion = new JComboBox( );
+        comboPresentacion = new JComboBox<String>( );
         comboPresentacion.addItem( Vino.BARRIL );
         comboPresentacion.addItem( Vino.BOTELLA );
         panelInfo1.add( comboPresentacion );
