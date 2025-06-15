@@ -240,6 +240,16 @@ public class DialogoAgregarVino extends JDialog implements ActionListener
 
             if( nombre != null && !nombre.isEmpty( ) && anhoS != null && !anhoS.isEmpty( ) && azucarS != null && !azucarS.isEmpty( ) && lugar != null && !lugar.isEmpty( ) && imagen != null && !imagen.isEmpty( ) )
             {
+            	  // ValidaciÛn de solo letras
+                if (!nombre.matches("[a-zA-Z·ÈÌÛ˙¡…Õ”⁄Ò—\\s]+")) {
+                    JOptionPane.showMessageDialog(this, "El nombre solo puede contener letras.", "Error en nombre", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (!lugar.matches("[a-zA-Z·ÈÌÛ˙¡…Õ”⁄Ò—\\s]+")) {
+                    JOptionPane.showMessageDialog(this, "El lugar de origen solo puede contener letras.", "Error en lugar de origen", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 try
                 {
                     int anho = Integer.parseInt( anhoS );
