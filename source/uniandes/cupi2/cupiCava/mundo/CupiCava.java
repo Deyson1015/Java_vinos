@@ -63,6 +63,8 @@ public class CupiCava
      */
     public Vino buscarVino( String pNombre )
     {
+    	assert pNombre != null && !pNombre.isEmpty() : "El nombre no puede estar ser nulo ni estar vacío";
+    	
         Vino buscado = null;
         boolean encontre = false;
 
@@ -87,6 +89,8 @@ public class CupiCava
      */
     public Vino buscarBinarioPorNombre( String pNombre )
     {
+    	assert pNombre != null && !pNombre.isEmpty() : "El nombre a buscar no puede ser nulo o estar vacío";
+    	
     	int izquierda = 0;
     	int derecha = vinos.size() -1;
     	
@@ -119,12 +123,12 @@ public class CupiCava
              return null; 
          }
 
-         Vino masDulce = vinos.get(0); // Asumiendo que este elemento es el mas dulce
+         Vino masDulce = vinos.get(0); // Asumiendo que este elemento es el más dulce
 
          for (int i = 1; i < vinos.size(); i++) {
              Vino actual = vinos.get(i);
              if (actual.darContenidoAzucar() > masDulce.darContenidoAzucar()) {
-                 masDulce = actual; // Se encontr� un vino m�s dulce
+                 masDulce = actual; // Se encontró un vino más dulce
              }
          }
 
@@ -164,6 +168,8 @@ public class CupiCava
      */
     public ArrayList<Vino> buscarVinosDeTipo( String pTipo )
     {
+    	assert pTipo != null && !pTipo.isEmpty()  : "El tipo no puede ser nulo o estar vacío";
+    	
     	ArrayList<Vino> resultado = new ArrayList<>();
     	
     	for ( Vino vino : vinos) {
