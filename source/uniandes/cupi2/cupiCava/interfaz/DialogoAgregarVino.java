@@ -67,7 +67,7 @@ public class DialogoAgregarVino extends JDialog implements ActionListener
     /**
      * Combo box con las presentaciones del vino.
      */
-    private JComboBox comboPresentacion;
+    private JComboBox<String> comboPresentacion;
 
     /**
      * Campo de texto con el aÒo de elaboraciÛn del vino.
@@ -92,12 +92,14 @@ public class DialogoAgregarVino extends JDialog implements ActionListener
     /**
      * Combo box con los tipos de vino.
      */
-    private JComboBox comboTipo;
+    private JComboBox<String> comboTipo;
 
     /**
      * Combo box con los colores del vino.
      */
-    private JComboBox comboColor;
+    private JComboBox<String> comboColor;
+
+
 
     /**
      * BotÛn para agregar.
@@ -136,7 +138,7 @@ public class DialogoAgregarVino extends JDialog implements ActionListener
         panelInfo1.add( txtNombre );
 
         panelInfo1.add( new JLabel( "PresentaciÛn:" ) );
-        comboPresentacion = new JComboBox( );
+        comboPresentacion = new JComboBox<String>( );
         comboPresentacion.addItem( Vino.BARRIL );
         comboPresentacion.addItem( Vino.BOTELLA );
         panelInfo1.add( comboPresentacion );
@@ -150,7 +152,7 @@ public class DialogoAgregarVino extends JDialog implements ActionListener
         panelInfo1.add( txtContenidoAzucar );
 
         panelInfo1.add( new JLabel( "Tipo:" ) );
-        comboTipo = new JComboBox( );
+        comboTipo = new JComboBox<String>( );
         comboTipo.addItem( Vino.SECO );
         comboTipo.addItem( Vino.ABOCADO );
         comboTipo.addItem( Vino.SEMI_SECO );
@@ -163,7 +165,7 @@ public class DialogoAgregarVino extends JDialog implements ActionListener
         panelInfo1.add( txtLugarOrigen );
 
         panelInfo1.add( new JLabel( "Color:" ) );
-        comboColor = new JComboBox( );
+        comboColor = new JComboBox<String>( );
         comboColor.addItem( Vino.BLANCO );
         comboColor.addItem( Vino.TINTO );
         comboColor.addItem( Vino.ROSADO );
@@ -238,6 +240,16 @@ public class DialogoAgregarVino extends JDialog implements ActionListener
 
             if( nombre != null && !nombre.isEmpty( ) && anhoS != null && !anhoS.isEmpty( ) && azucarS != null && !azucarS.isEmpty( ) && lugar != null && !lugar.isEmpty( ) && imagen != null && !imagen.isEmpty( ) )
             {
+            	  // ValidaciÛn de solo letras
+                if (!nombre.matches("[a-zA-Z·ÈÌÛ˙¡…Õ”⁄Ò—\\s]+")) {
+                    JOptionPane.showMessageDialog(this, "El nombre solo puede contener letras.", "Error en nombre", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (!lugar.matches("[a-zA-Z·ÈÌÛ˙¡…Õ”⁄Ò—\\s]+")) {
+                    JOptionPane.showMessageDialog(this, "El lugar de origen solo puede contener letras.", "Error en lugar de origen", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 try
                 {
                     int anho = Integer.parseInt( anhoS );

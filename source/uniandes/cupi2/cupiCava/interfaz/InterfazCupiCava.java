@@ -200,7 +200,7 @@ public class InterfazCupiCava extends JFrame
      */
     private void actualizarLista( )
     {
-        ArrayList vinos = new ArrayList( );
+        ArrayList<String> vinos = new ArrayList<String>( );
         for( int i = 0; i < cupiCava.darVinos( ).size( ); i++ )
         {
             Vino actual = ( Vino )cupiCava.darVinos( ).get( i );
@@ -339,18 +339,28 @@ public class InterfazCupiCava extends JFrame
      * @param pLugarOrigen Lugar de origen del vino. lugarElaboracion != null y lugarElaboracion != "".
      * @param pImagen Imagen del vino. pImagen != null && pImagen != "".
      */
-    public void agregarVino( String pNombre, String pPresentacion, int pAnhoElaboracion, double pContenidoAzucar, String pTipo, String pColor, String pLugarOrigen, String pImagen )
-    {
-        boolean agregada = cupiCava.agregarVino( pNombre, pPresentacion, pAnhoElaboracion, pContenidoAzucar, pTipo, pColor, pLugarOrigen, pImagen );
-        if( agregada )
-        {
-            actualizarLista( );
-        }
-        else
-        {
-            JOptionPane.showMessageDialog( this, "Ya existe en la cava un vino con el nombre dado.", "Agregar vino", JOptionPane.ERROR_MESSAGE );
-        }
-    }
+    public void agregarVino(String pNombre, String pPresentacion, int pAnhoElaboracion, double pContenidoAzucar,
+            String pTipo, String pColor, String pLugarOrigen, String pImagen)
+	{
+		try {
+			boolean agregada = cupiCava.agregarVino(pNombre, pPresentacion, pAnhoElaboracion,
+			                                     pContenidoAzucar, pTipo, pColor, pLugarOrigen, pImagen);
+			if (agregada) {
+			actualizarLista();
+			} else {
+			JOptionPane.showMessageDialog(this, 
+			    "Ya existe en la cava un vino con el nombre dado.",
+			    "Agregar vino", 
+			    JOptionPane.ERROR_MESSAGE);
+		}
+		} catch (IllegalArgumentException e) {
+			// Aquí se muestra el mensaje del assert convertido en excepción
+			JOptionPane.showMessageDialog(this, 
+			e.getMessage(),
+			"Error al agregar vino", 
+			JOptionPane.ERROR_MESSAGE);
+		}
+}
 
     // -----------------------------------------------------------------
     // Puntos de Extensión
